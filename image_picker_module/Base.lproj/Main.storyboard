@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Meme Editor View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="image_picker_module" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MemeEditorViewController" customModule="image_picker_module" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -22,28 +22,21 @@
                                 <rect key="frame" x="8" y="20" width="359" height="44"/>
                                 <items>
                                     <navigationItem title="MeMe 1.0" id="Yjf-Up-tem">
-                                        <leftBarButtonItems>
-                                            <barButtonItem style="plain" id="WHc-K5-M0i">
-                                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ANX-uz-ydF">
-                                                    <rect key="frame" x="16" y="7" width="40" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Share"/>
-                                                    <connections>
-                                                        <action selector="share:" destination="BYZ-38-t0r" eventType="touchUpInside" id="omb-of-9nf"/>
-                                                    </connections>
-                                                </button>
-                                            </barButtonItem>
-                                            <barButtonItem style="plain" id="hGN-qs-5cP">
-                                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1QR-K5-deh">
-                                                    <rect key="frame" x="64" y="7" width="79" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Cancel"/>
-                                                    <connections>
-                                                        <action selector="cancelWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="V8j-6x-nBR"/>
-                                                    </connections>
-                                                </button>
-                                            </barButtonItem>
-                                        </leftBarButtonItems>
+                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="action" id="M4m-Zi-pi8">
+                                            <connections>
+                                                <action selector="share:" destination="BYZ-38-t0r" id="2WY-Nt-9D1"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" style="plain" id="hGN-qs-5cP">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1QR-K5-deh">
+                                                <rect key="frame" x="264" y="7" width="79" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Cancel"/>
+                                                <connections>
+                                                    <action selector="cancelWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="V8j-6x-nBR"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -121,7 +114,7 @@
                         <outlet property="imageView" destination="SFp-Fv-tsd" id="bAo-zb-bLw"/>
                         <outlet property="menuBar" destination="IuG-QV-aPt" id="EdZ-h4-pc9"/>
                         <outlet property="navBar" destination="LRT-vz-khb" id="KVK-dy-to7"/>
-                        <outlet property="shareButton" destination="ANX-uz-ydF" id="wGZ-38-6KH"/>
+                        <outlet property="shareButton" destination="M4m-Zi-pi8" id="Ynp-AH-95F"/>
                         <outlet property="topTextField" destination="3aR-wc-fNm" id="AKa-07-roC"/>
                     </connections>
                 </viewController>
