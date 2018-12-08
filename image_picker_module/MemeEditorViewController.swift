@@ -9,7 +9,7 @@
 import UIKit
 
     // Mark: Dismisses keyboard when user clicks outside text field.
-    class MemeEditorViewController: UIViewController, UINavigationControllerDelegate {
+class MemeEditorViewController: UIViewController, UINavigationControllerDelegate {
  
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -95,6 +95,11 @@ import UIKit
         textField.text = ""
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     //Mark: Moving the view up when the keyboard appears
     override func viewWillAppear(_ animated: Bool) {
         
@@ -115,7 +120,7 @@ import UIKit
     //Mark: Moving view up.
     @objc func keyboardWillShow(_ notification:Notification) {
         if bottomTextField.isEditing {
-            view.frame.origin.y -= getKeyboardHeight(notification)
+            view.frame.origin.y = -getKeyboardHeight(notification)
         }
     }
     
@@ -124,47 +129,47 @@ import UIKit
         view.frame.origin.y = 0
     }
         
-        func hideToolbars(_ hide: Bool) {
-            menuBar.isHidden = hide
-            navBar.isHidden = hide
-        }
+    func hideToolbars(_ hide: Bool) {
+        menuBar.isHidden = hide
+        navBar.isHidden = hide
+    }
         
-        func save() {
-            let memedImage = generateMemedImage()
+    func save() {
+        let memedImage = generateMemedImage()
             
-            UIImageWriteToSavedPhotosAlbum(memedImage, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
-            print("saving")
+        UIImageWriteToSavedPhotosAlbum(memedImage, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+        print("saving")
             
-        }
+    }
         
-        func generateMemedImage() -> UIImage {
-            hideToolbars(true)
-            // Render view to an image
-            UIGraphicsBeginImageContext(self.view.frame.size)
-            view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
-            let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-            UIGraphicsEndImageContext()
+    func generateMemedImage() -> UIImage {
+        hideToolbars(true)
+        // Render view to an image
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+        let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
             
-            hideToolbars(false)
+        hideToolbars(false)
             
-            return memedImage
+        return memedImage
             
-        }
+    }
 
-        func showAlert(title: String, message: String){
-            let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "OK", style: .default))
-            present(ac, animated: true)
-        }
+    func showAlert(title: String, message: String){
+        let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        present(ac, animated: true)
+    }
         
-        @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-            if let error = error {
-                // we got back an error!
-                showAlert(title: "Save Error", message: error.localizedDescription )
-            } else {
-                showAlert(title: "Saved!", message: "Your meme has been saved to your photos." )
-            }
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+        // we got back an error!
+        showAlert(title: "Save Error", message: error.localizedDescription )
+        } else {
+        showAlert(title: "Saved!", message: "Your meme has been saved to your photos." )
         }
+    }
         
 }
 
